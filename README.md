@@ -23,51 +23,49 @@
 | birth              | date      | null:false
 
 ### Association
-- has_many :items, dependent: :destroy
+- has_many :items,
 - has_many :orders
-- has_one :addresses, dependent: :destroy
 
 # items テーブル
-| Column           | Type      | Options
-| -----------------| ----------| -----------------
-| user             | reference | foreign_key: true
-| name             | string    | null: false
-| content          | text      | null: false
-| price            | integer   | null: false
-| category_id      | integer   | foreign_key: true
-| condition_id     | integer   | foreign_key: true
-| shipping_fee_id  | integer   | foreign_key: true
-| shipping_area_id | integer   | foreign_key: true
-| shipping_date_id | integer   | foreign_key: true
+| Column           | Type       | Options
+| -----------------| -----------| ------------------------------
+| user             | references | foreign_key: true, null: false
+| name             | string     | null: false
+| content          | text       | null: false
+| price            | integer    | null: false
+| category_id      | integer    | null: false
+| condition_id     | integer    | null: false
+| shipping_fee_id  | integer    | null: false
+| shipping_date_id | integer    | null: false
+| prefecture_id    | integer    | null: false
 
 ### Association
 - belongs_to :user
 - has_one :order
 
 # orders テーブル
-| Column        | Type      | Options
-| --------------| ----------| -----------------
-| user          | reference | foreign_key: true
-| item          | reference | foreign_key: true
+| Column        | Type       | Options
+| --------------| -----------| ------------------------------
+| user          | references | foreign_key: true, null: false
+| item          | references | foreign_key: true, null: false
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 # addresses テーブル
-| Column        | Type      | Options
-| --------------| ----------| -----------------
-| city          | string    | null: false
-| post_code     | string    | null: false
-| house_number  | string    | null: false
-| phone_number  | string    | null: false
-| prefecture_id | integer   | null: false
-| order         | reference | foreign_key: true
-| building_name | string    |
+| Column        | Type       | Options
+| --------------| -----------| -----------------
+| city          | string     | null: false
+| post_code     | string     | null: false
+| house_number  | string     | null: false
+| phone_number  | string     | null: false
+| prefecture_id | integer    | null: false
+| order         | references | foreign_key: true, null: false
+| building_name | string     |
 
 ### Association
 - belongs_to :order
 
 # ER図
-![ER図](https://github.com/user-attachments/assets/a37fce4b-1704-410b-af5b-01f0f7b0af26)

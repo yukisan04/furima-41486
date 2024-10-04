@@ -1,24 +1,72 @@
-# README
+## 機能一覧
+- データベース設計
+- ユーザー管理機能
+- 商品出品機能
+- 商品一覧表示機能
+- 商品詳細表示機能
+- 商品情報編集機能
+- 商品購入機能
+- 商品削除機能
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
+| Column             | Type      | Options
+| -------------------| ----------| -------------------------
+| nickname           | string    | null: false
+| email              | string    | null: false, unique: true
+| encrypted_password | string    | null: false
+| family_name        | string    | null:false
+| first_name         | string    | null:false
+| family_name_kana   | string    | null:false
+| first_name_kana    | string    | null:false
+| birth              | date      | null:false
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :orders
 
-* System dependencies
+# items テーブル
+| Column           | Type       | Options
+| -----------------| -----------| ------------------------------
+| user             | references | foreign_key: true, null: false
+| name             | string     | null: false
+| content          | text       | null: false
+| price            | integer    | null: false
+| category_id      | integer    | null: false
+| condition_id     | integer    | null: false
+| shipping_fee_id  | integer    | null: false
+| shipping_date_id | integer    | null: false
+| prefecture_id    | integer    | null: false
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :order
 
-* Database creation
+# orders テーブル
+| Column        | Type       | Options
+| --------------| -----------| ------------------------------
+| user          | references | foreign_key: true, null: false
+| item          | references | foreign_key: true, null: false
 
-* Database initialization
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* How to run the test suite
+# addresses テーブル
+| Column        | Type       | Options
+| --------------| -----------| -----------------
+| city          | string     | null: false
+| post_code     | string     | null: false
+| house_number  | string     | null: false
+| phone_number  | string     | null: false
+| prefecture_id | integer    | null: false
+| order         | references | foreign_key: true, null: false
+| building_name | string     |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :order
 
-* Deployment instructions
-
-* ...
+# ER図
+![ER図](https://github.com/user-attachments/assets/88163536-8dde-4c95-8486-1ad449d1032e)

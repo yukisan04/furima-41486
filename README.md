@@ -69,3 +69,4 @@
 - belongs_to :order
 
 # ER図
+![ER図](https://github.com/user-attachments/assets/88163536-8dde-4c95-8486-1ad449d1032e)

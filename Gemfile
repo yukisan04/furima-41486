@@ -80,3 +80,6 @@ group :production do
 end
 
 gem 'devise'
+gem 'pry-rails'
+gem 'active_hash'
+gem 'rspec-rails', '~> 4.0.0'

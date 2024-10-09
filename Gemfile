@@ -78,3 +78,11 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'devise'
+gem 'pry-rails'
+gem 'active_hash'
+gem 'rspec-rails', '~> 4.0.0'
+gem 'faker'
+gem 'factory_bot_rails'
+gem 'mini_magick'

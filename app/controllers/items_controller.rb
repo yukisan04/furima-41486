@@ -23,4 +23,5 @@ class ItemsController < ApplicationController
                                    :shipping_area_id, :shipping_date_id,
                                    :image).merge(user_id: current_user.id)
     end
+  end
 end

@@ -9,4 +9,8 @@ function count(){
   });
 };
 
-window.addEventListener('load', count)
+const price = () => {
+  count();
+};
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);

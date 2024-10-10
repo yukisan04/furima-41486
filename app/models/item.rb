@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
   end
 
-  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   has_one_attached :image
   belongs_to :user
 

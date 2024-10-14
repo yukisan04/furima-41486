@@ -1,11 +1,17 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :item_find, only: [:show, :edit, :update]
+
   def index
     @items = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
     @item = Item.new
+  end
+
+  def edit
+    redirect_to action: :index unless current_user.id == item.user_id
   end
 
   def create
@@ -18,7 +24,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to action: :show
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -29,6 +42,10 @@ class ItemsController < ApplicationController
                                  :condition_id, :shipping_fee_id,
                                  :prefecture_id, :shipping_date_id,
                                  :image).merge(user_id: current_user.id)
+  end
+
+  def item_find
+    @item = Item.find(params[:id])
   end
 
 end

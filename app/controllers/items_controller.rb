@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def edit
+  end
+
   def create
     if @item.save
       redirect_to action: :index

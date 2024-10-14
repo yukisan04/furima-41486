@@ -35,10 +35,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def item_find
-    @item = Item.find(params[:id])
-  end
-
   private
 
   def item_params
@@ -54,7 +50,8 @@ class ItemsController < ApplicationController
     redirect_to action: :index unless current_user.id == item.user_id
   end
 
-  def set_item
+  def item_find
+    @item = Item.find(params[:id])
   end
 
 end

@@ -9,5 +9,6 @@ FactoryBot.define do
     token { 'tok_09871648227' }
     association :user
     association :item
+    token {ENV["PAYJP_PUBLIC_KEY"]}
   end
 end

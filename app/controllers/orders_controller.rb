@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :tp_index, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new
   end
 
@@ -11,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       @user_order.save
@@ -30,6 +28,6 @@ class OrdersController < ApplicationController
   end
 
   def tp_index
-    item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 end

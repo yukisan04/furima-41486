@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :tp_index
+  before_action :tp_index, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
@@ -11,12 +11,13 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       @user_order.save
       redirect_to root_path
     else
-      render :index
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -30,6 +31,5 @@ class OrdersController < ApplicationController
 
   def tp_index
     item = Item.find(params[:item_id])
-    redirect_to action: :index unless current_user.id == @item.user_id
   end
 end

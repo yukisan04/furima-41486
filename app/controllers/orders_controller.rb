@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :item_find, only: [:index, :create]
-  before_action :tp_index
   before_action :sold_out
+  before_action :tp_index
 
   def index
     @user_order = UserOrder.new

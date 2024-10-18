@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :item_find
-  before_action :tp_index, only: [:index, :create]
+  before_action :item_find, only: [:index, :create]
+  before_action :tp_index
+  before_action :sold_out
 
   def index
     @user_order = UserOrder.new
@@ -42,5 +43,9 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def sold_out
+    redirect_to root_path unless @item.order.blank?
   end
 end

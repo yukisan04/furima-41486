@@ -9,7 +9,6 @@ class UserOrder
     validates :city
     validates :house_number
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is 10 or 11 digit numbers' }
-    validates :token
     validates :user_id
     validates :item_id
     validates :token, presence: true

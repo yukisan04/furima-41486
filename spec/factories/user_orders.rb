@@ -9,5 +9,6 @@ FactoryBot.define do
     association :user
     association :item
     token {"tok_abcdefghijk00000000000000000"}
+    price {3000}
   end
 end

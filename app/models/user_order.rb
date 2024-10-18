@@ -1,4 +1,5 @@
 class UserOrder
+
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number, :user_id, :item_id, :token,
                 :price
@@ -12,6 +13,8 @@ class UserOrder
     validates :token
     validates :user_id
     validates :item_id
+    validates :price, presence: true
+    validates :token, presence: true
   end
 
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }

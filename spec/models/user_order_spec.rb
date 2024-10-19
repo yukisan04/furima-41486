@@ -123,6 +123,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
+
+      it '未選択のidでは保存できないこと' do
+        @user_order.item_id = 0
+        @user_order.valid?
+      end
     end
   end
 end

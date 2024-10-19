@@ -125,8 +125,9 @@ RSpec.describe UserOrder, type: :model do
       end
 
       it '未選択のidでは保存できないこと' do
-        @user_order.item_id = 0
+        @user_order.prefecture_id = 0
         @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Prefecture must be other than 0')
       end
     end
   end

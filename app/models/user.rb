@@ -23,7 +23,5 @@ class User < ApplicationRecord
   end
 
   has_many :items, dependent: :destroy
-  has_many :orders
-  has_one :address, dependent: :destroy
   has_one_attached :image
 end

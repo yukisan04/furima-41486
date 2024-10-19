@@ -11,7 +11,7 @@ class UserOrder
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is 10 or 11 digit numbers' }
     validates :user_id
     validates :item_id
-    validates :token, presence: true
+    validates :token
   end
 
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
